@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color = "dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style ="color: #ffffff;">
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content no-padding>
+  <ion-card>
+  <ion-slides [options] = " {loop:true, autoplay:true} " >
+    <ion-slide *ngFor="let number of [1,2,3]">
+      <img style="margin-top: 10px;" src="./assets/images/{{number}}.jpg" />
+    </ion-slide>
+  </ion-slides>
+</ion-card>
+
+<ion-list>
+    <ion-list-header><h5 style ="color: #ffffff;">Available Products (VAT not included)</h5></ion-list-header>
+    <ion-item *ngFor = "let product of products">
+      <ion-thumbnail slot="start">
+          <img [src]="product.images[0].src"/>
+      </ion-thumbnail>
+      <ion-label text-wrap> <h4 style ="color: #ffffff;">{{product.name}} <span [innerHTML]= "product.price" style ="color: #ffffff;"></span><span style ="color: #ffffff;"> €</span></h4>
+       <!-- <p><span style ="color: #ffffff;" [innerHTML]= "product.description"></span></p> --> </ion-label> 
+        <button ion-button icon clear item-right (click)=openProductPage(product.name)>
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+    </ion-item>
+</ion-list>
+
+</ion-content>
+

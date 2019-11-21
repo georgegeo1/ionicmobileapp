@@ -1,0 +1,55 @@
+
+<ion-app>
+  <ion-split-pane>
+    <ion-menu type="overlay">
+      <ion-header>
+        <ion-toolbar color = "dark">
+            <ion-buttons slot="start">
+                <ion-menu-button></ion-menu-button>
+              </ion-buttons>
+          <ion-title>Menu</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="card-background-page" >
+        <ion-card>
+          <ion-thumbnail slot="start">
+          <img src="./assets/images/logo.png" />
+        </ion-thumbnail>
+          <div class="card-title" style = "color :white;">CCS 2019</div> <br/><br/>
+          <div class="subtitle" style = "color :white;">Welcome to the CCS 2019 app</div> <br/>
+        </ion-card>
+
+        <ion-list>
+          <ion-menu-toggle auto-hide="true" *ngFor="let p of appPages">
+            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
+              <ion-icon slot="start" [name]="p.icon" style = "color :white;"></ion-icon>
+              <ion-label style = "color :white;">
+                {{p.title}}
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        <ion-list> <br/>
+
+          <ion-label ><h2 style = "color :white; text-align: center; font-weight : bold;">Categories</h2></ion-label> <br/>
+            <ion-button color = "#9F1053" size = "small" menuClose *ngFor = "let category of categories" (click)="closeMenu(); openCategoryPage(category.name)" >
+              <ion-icon ios="ios-link" md="md-link" slot = "start"></ion-icon>
+              <ion-label item-right>
+                 {{category.name}}
+              </ion-label>
+            </ion-button>
+        </ion-list>
+
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app> 
+ 
+ 
+
+ 
+ 
+ 
+ 
+

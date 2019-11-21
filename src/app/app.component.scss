@@ -1,0 +1,30 @@
+ion-content{
+    --ion-background-color: #9F1053;
+}
+.card-background-page {
+
+    ion-card {
+        position: relative;
+        text-align: center;
+        margin: 0px !important;
+        width: 100% !important;
+        background-color: #9F1053;
+    }
+
+    .card-title {
+        position: absolute;
+        top: 36%;
+        font-size: 2em;
+        width: 100%;
+        font-weight: bold;
+        color: #000000
+    }
+
+    .card-subtitle {
+        font-size: 1em;
+        position: absolute;
+        top: 60%;
+        width: 100%;
+        color: #000000
+    }
+}

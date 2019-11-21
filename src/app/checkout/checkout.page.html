@@ -1,0 +1,126 @@
+<ion-header>
+    <ion-toolbar color = "dark">
+      <ion-title style ="color: #ffffff;">
+        Checkout
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <ion-list>
+      <ion-item-divider color = "primary"> Billing Details  </ion-item-divider>
+
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Title</ion-label>
+          <ion-select [(ngModel)] = "newOrder.title" style ="color: #ffffff;">
+            <ion-select-option *ngFor = "let t of titleData" value="{{t.name}}">{{t.name}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style ="color: #ffffff;">First Name</ion-label>
+          <ion-input style ="color: #ffffff;"type="text" [(ngModel)] = "newOrder.firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Last Name</ion-label>
+            <ion-input style ="color: #ffffff;" type="text" [(ngModel)] = "newOrder.lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Company</ion-label>
+            <ion-input style ="color: #ffffff;"type="text" [(ngModel)] = "newOrder.company"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Email</ion-label>
+          <ion-input style ="color: #ffffff;" type="email" [(ngModel)] = "newOrder.email"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Phone</ion-label>
+            <ion-input style ="color: #ffffff;" type="text" [(ngModel)] = "newOrder.phone"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Address</ion-label>
+            <ion-input style ="color: #ffffff;" type="text" maxlength="80" [(ngModel)] = "newOrder.address"></ion-input>
+      </ion-item>
+      <ion-item >
+      <ion-label style ="color: #ffffff;">Street Number</ion-label>
+            <ion-input style ="color: #ffffff;" type="text" maxlength="80" [(ngModel)] = "newOrder.streetNumber"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Town/City</ion-label>
+            <ion-input style ="color: #ffffff;" type="text" [(ngModel)] = "newOrder.city"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">State</ion-label>
+            <ion-input style ="color: #ffffff;" type="text" [(ngModel)] = "newOrder.state"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Postal Code</ion-label>
+          <ion-input style ="color: #ffffff;" type="text" [(ngModel)] = "newOrder.postcode"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Country</ion-label>
+          <ion-select style ="color: #ffffff;" [(ngModel)] = "newOrder.country">
+            <ion-select-option *ngFor = "let c of countryData" value="{{c.name}}">{{c.name}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label style ="color: #ffffff;">Check-in</ion-label>
+        <ion-datetime style ="color: #ffffff;" displayFormat= "YYYY-MM-DD" value="2019-05-09" placeholder="Select Date" [(ngModel)] = "newOrder.checkinDate" ></ion-datetime>
+      </ion-item>
+      <ion-item>
+              <ion-label style ="color: #ffffff;">Check-out</ion-label>
+              <ion-datetime style ="color: #ffffff;" displayFormat= "YYYY-MM-DD" value="2019-05-12" placeholder="Select Date" [(ngModel)] = "newOrder.checkoutDate" ></ion-datetime>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Arrival Time to Airport</ion-label>
+          <ion-datetime style ="color: #ffffff;" displayFormat="HH:mm" picker-format="HH:mm" [(ngModel)] = "newOrder.arrivalTime" placeholder="Select Time" ></ion-datetime>
+      </ion-item>
+      <ion-item>
+          <ion-label style ="color: #ffffff;">Departure Time from Hotel</ion-label>
+          <ion-datetime style ="color: #ffffff;" displayFormat="HH:mm" picker-format="HH:mm"  [(ngModel)] = "newOrder.departureTime" placeholder="Select Time"  ></ion-datetime>
+      </ion-item>
+      
+      <ion-item>
+          <ion-label style ="color: #ffffff;" position="floating">Order Notes</ion-label>
+          <ion-textarea style ="color: #ffffff;" maxlength="80" [(ngModel)] = "newOrder.notes" placeholder = "Special notes about the order (Optional)"> </ion-textarea>
+      </ion-item>
+        
+
+     <ion-item-divider color = "primary">Payment Methods</ion-item-divider>
+        <ion-item>
+          <ion-label style ="color: #ffffff;">Payment Method</ion-label>
+          <ion-select style ="color: #ffffff;" [(ngModel)] = "newOrder.paymentMethod">
+            <ion-select-option *ngFor = "let p of paymentMethods" value="{{p.method_title}}">{{p.method_title}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+  </ion-list>
+
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2></ion-col>
+          <ion-col col-4>
+            <ion-button color="danger" (click)= "closeCheckout()">Back</ion-button>
+          </ion-col>
+          <ion-col col-4>
+
+              <div *ngIf="this.newOrder.firstName === undefined || this.newOrder.lastName === undefined || this.newOrder.company === undefined || this.newOrder.email === undefined ||
+              this.newOrder.phone === undefined || this.newOrder.address === undefined || this.newOrder.streetNumber === undefined || this.newOrder.postcode === undefined ||
+              this.newOrder.city === undefined|| this.newOrder.state === undefined|| this.newOrder.country === undefined|| this.newOrder.title === undefined|| 
+              this.newOrder.checkinDate === undefined || this.newOrder.checkoutDate === undefined || this.newOrder.arrivalTime === undefined|| this.newOrder.departureTime === undefined||
+              this.newOrder.paymentMethod === undefined; then alert else placetheorder"></div>
+              <ng-template #alert><ion-button color="success" (click) = "presentAlert()">Place Order</ion-button></ng-template>
+              <ng-template #placetheorder><ion-button color="success" (click) = "placeOrder(); presentToast();">Place Order</ion-button></ng-template>
+
+              
+          </ion-col>
+          <ion-col col-2></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-toolbar>
+</ion-footer>
+  

@@ -1,0 +1,87 @@
+<ion-header>
+    <ion-toolbar color = "dark">
+      <ion-title style ="color: #ffffff;">
+        Cart
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+  <ion-card [hidden] = "!emptyCart">
+    <ion-grid>
+      <ion-row ><ion-col style ="color: #ffffff;">There are no products in the cart!</ion-col></ion-row>
+    </ion-grid>
+  </ion-card>
+
+
+    <ion-card *ngFor = "let item of cartItems; let i = index">
+      <ion-item color = "light">
+          <ion-thumbnail slot="start">
+              <img [src]="item.product.images[0].src" style = "width :50px !important; height: 50px !important;  " />
+          </ion-thumbnail>
+          <div>
+          <p><strong>{{item.product.name}}</strong></p>        
+          <p>{{item.quantity}} x {{item.product.price}} x 24% </p>
+          </div>  
+          
+          <ion-fab  horizontal="end" (click) = "removeCardItem(item, i)">
+              <ion-fab-button color = "danger" style = "height :40px; width : 40px">
+                <ion-icon name="remove-circle"></ion-icon>
+              </ion-fab-button>
+          </ion-fab>
+
+      </ion-item>
+
+      <ion-item>
+          <ion-row padding>
+            <ion-col col-6> <ion-label style ="color: #ffffff; text-align: center;">Quantity</ion-label> <br/>
+            <ion-button color="success" (click) = "changeQuantity(item, i , -1)" ><ion-icon name="remove-circle"></ion-icon></ion-button>
+            <ion-button color="dark">{{item.quantity}}</ion-button>
+            <ion-button color="success" (click) = "changeQuantity(item, i , 1)"><ion-icon name="add-circle" ></ion-icon></ion-button>
+           </ion-col>
+                
+              
+    
+          </ion-row>
+
+      </ion-item>
+
+    </ion-card>
+
+    <ion-grid>
+      <ion-card color="light">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-2>
+            </ion-col>
+            <ion-col col-4><strong>TOTAL</strong></ion-col>
+            <ion-col col-3>VAT included</ion-col>
+            <ion-col col-3><strong>{{total}}</strong> €</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card>
+    </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-2></ion-col>
+        <ion-col col-4>
+          <ion-button color="danger" (click)= "closeModal()">Back</ion-button>
+        </ion-col>
+        <ion-col col-4>
+            <div *ngIf="cartItems.length > 0; then proceed else error"></div>
+
+            <ng-template #proceed><ion-button color="success" (click) = "checkout()">Checkout</ion-button></ng-template>
+            <ng-template #error><ion-button color="success" (click) = "presentAlert()">Checkout</ion-button></ng-template>
+            
+        </ion-col>
+        <ion-col col-2></ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color = "dark">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style ="color: #ffffff;">
+      Products by Category
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-list-header><h2 style ="color: #ffffff;">24% VAT not included</h2></ion-list-header>
+        <ion-item *ngFor = "let product of products">
+          <ion-thumbnail slot="start">
+              <img [src]="product.images[0].src"/>
+          </ion-thumbnail>
+          <ion-label text-wrap> <h4 style ="color: #ffffff;" >{{product.name}} <span style ="color: #ffffff;" [innerHTML]= "product.price"></span><span> €</span></h4>
+            <!--<p><span style ="color: #ffffff;" [innerHTML]= "product.description"></span></p>--> </ion-label>
+            <button ion-button icon clear item-right (click)="openProductPage(product.name)">
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

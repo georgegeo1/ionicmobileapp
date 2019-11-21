@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-toolbar color = "dark">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title style ="color: #ffffff;">
+        About
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+
+      <ion-card padding>
+        <ion-row>
+        <ion-text>
+            <h6 style = "text-align : justify; font-weight: bold; color: #ffffff;">This app helps you register for the 5th Interdisciplinary Chaos Symposium on "Chaos and Complex Systems". Please read the registration details and place your order.</h6>
+          
+        </ion-text>
+        </ion-row>
+        <ion-row>
+          <ion-button color = "success" expand = "block" (click) = "openRegDetails()"><ion-icon name="document" slot="start"></ion-icon>Read Registration Details</ion-button>
+        </ion-row>
+        <ion-row><ion-text><h6 style = "text-align : justify; font-weight: bold; color: #ffffff;">For any further information, visit the official website of the event.</h6></ion-text></ion-row>
+      </ion-card>
+
+</ion-content>
